@@ -1,0 +1,12 @@
+@import './Fonts.scss';
+@import './Colors.scss';
+
+$theme-colors: (
+    "default": $bg-color,
+    "primary": white
+);
+
+
+/* import bootstrap to set changes */
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

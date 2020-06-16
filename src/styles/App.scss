@@ -1,0 +1,71 @@
+@import './Custom.scss';
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+}
+
+html, .container-fluid {
+    background-color: $bg-color;
+    color: white;
+}
+
+hr {
+    &.custom {
+        border: 0.05rem solid white;
+        margin: 1rem 4rem;
+    }
+}
+
+.navbar-header {
+    .navbar-brand {
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    .navbar-nav {
+        a {
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+    }
+}
+
+.standings {
+    .table {
+        color: white;
+        text-align: center;
+        font-size: 1.4rem;
+        font-weight: bold;
+    }
+
+    .table-hover {
+        tbody tr {
+          @include hover() {
+            color: $bg-color-secondary;
+          }
+        }
+    }
+
+    .d-inline-block {
+        margin-right: 20px;
+    }
+}
+
+
+.epl-winners {
+    .card {
+        margin: 10px auto;
+        background-color: $bg-color-green;
+        text-align: center;
+        font-weight: bold;
+    }
+
+    .card-img-top {
+        padding: 20px;
+        max-height: 270px;
+    }
+
+    .card-text{
+        font-size: 1.2rem;
+    } 
+}
