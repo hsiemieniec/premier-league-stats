@@ -1,8 +1,16 @@
 @import './Custom.scss';
 
-body {
+html {
     font-family: 'Montserrat', sans-serif;
-    font-size: 24px;
+    font-size: 13px;
+
+    @include media-breakpoint-up(md) { 
+        font-size: 15px;
+    }
+
+    @include media-breakpoint-up(xl) { 
+        font-size: 17px;
+    }
 }
 
 html, .container-fluid {
@@ -10,10 +18,14 @@ html, .container-fluid {
     color: white;
 }
 
+.main {
+    padding: 0 10px;
+}
+
 hr {
     &.custom {
         border: 0.05rem solid white;
-        margin: 1rem 4rem;
+        margin: 1rem 0;
     }
 }
 
@@ -21,6 +33,11 @@ hr {
     .navbar-brand {
         font-size: 1.2rem;
         font-weight: bold;
+
+        @include media-breakpoint-up(lg) { 
+            border-right: 2px solid white;
+            padding-right: 30px;
+        }
     }
     .navbar-nav {
         a {
@@ -28,14 +45,60 @@ hr {
             font-weight: bold;
         }
     }
+    .navbar-toggler {
+        color:white;
+        border-color: white;
+    }
+
+    .logo {
+        height: 50px;
+        @include media-breakpoint-up(md) {
+            height: 80px;
+        }
+    }
 }
 
 .standings {
+    h2 {
+        text-align: center;
+        width: 100%;
+    }
     .table {
         color: white;
         text-align: center;
-        font-size: 1.4rem;
-        font-weight: bold;
+        font-size: 1.1rem;
+
+        .club-logo {
+            max-height: 20px;
+
+            @include media-breakpoint-up(md) { 
+                max-height: 40px;
+            }
+        }
+
+        .long {
+            display: inline;
+        }
+
+        .short {
+            display: none;
+        }
+
+        @include media-breakpoint-down(sm) { 
+            .long {
+                display: none;
+            }
+
+            .short {
+                display: inline;
+            }
+        }
+
+        .ga, .gf {
+            @include media-breakpoint-down(sm) { 
+                display: none;
+            }
+        }
     }
 
     .table-hover {
@@ -47,7 +110,11 @@ hr {
     }
 
     .d-inline-block {
-        margin-right: 20px;
+        margin-right: 5px;
+        @include media-breakpoint-up(md) { 
+            margin-right: 20px;
+        }
+        
     }
 }
 
@@ -62,10 +129,86 @@ hr {
 
     .card-img-top {
         padding: 20px;
-        max-height: 270px;
+        max-height: 250px;
     }
 
-    .card-text{
-        font-size: 1.2rem;
+    .card-text {
+        font-size: 1.1rem;
     } 
+    
+    .card-body {
+        padding: 1.25rem 0;
+    }
+}
+
+.teams-info {
+    .form-control {
+        text-align: center;
+    }
+    .row {
+        @include media-breakpoint-up(md) {
+            margin: 15px;
+            
+        }
+        padding: 15px;
+        text-align: center;
+        border-bottom: 2px solid $bg-color-green;
+    }
+
+    .team-info-row-text {
+        font-size: 1.1rem;
+    }
+}
+
+.team-details {
+    .list-group-item {
+        background-color: transparent;
+        font-weight: bold;
+        border-color: $bg-color-secondary;
+    }
+
+    .list-group-item-action {
+        color: inherit;
+    }
+
+
+    .team-overview {
+        border-bottom: 3px solid $bg-color-green;
+    }  
+
+    .row {
+        margin-top: 20px;      
+    }
+
+    img {
+        max-height: 200px;
+
+        @include media-breakpoint-up(md) {
+            max-height: 300px;
+        }
+
+        @include media-breakpoint-up(xl) {
+            max-height: 425px;
+        }
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+    }
+
+    .table {
+        color: white;
+    }
+
+    .team-details-squad-list {
+        @include media-breakpoint-down(md) {
+            padding: 0 5px;
+        }
+    }
+
+    .team-details-active-competitions {
+        @include media-breakpoint-down(sm) {
+            border-bottom: 3px solid $bg-color-green;
+            margin-bottom: 20px;
+        }
+    }
 }

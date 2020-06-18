@@ -5,7 +5,7 @@ import EplWinnerCard from './parts/EplWinnerCard';
 
 export default function EplWinners() {
     const [winners, setWinners] = useState([]);
-    const [load, setLoad] = useState(true);
+    const [loading, isLoading] = useState(true);
 
     // useEffect : Get Epl winners
     useEffect(() => {
@@ -14,19 +14,19 @@ export default function EplWinners() {
             .then(res => {
                 let data = res.data;
                 setWinners(data.seasons);
-                setLoad(false);
+                isLoading(false);
             })
             .catch(err => console.log(err));
     }, []);
 
-    if(load) {
+    if(loading) {
         return (
-            <Container>Loading ...</Container>
+            <Container fluid="lg">Loading ...</Container>
         )
     } else {
         return (
-            <Container className="epl-winners">
-                <Row xs={1} md={2} lg={3} xl={4}>
+            <Container fluid="lg" className="epl-winners">
+                <Row xs={2} md={2} lg={3} xl={4}>
                     {winners.filter(winner => winner.winner !== null).map(winner => <Col><EplWinnerCard key={winner.id} winner={winner} /></Col>)}
                 </Row>
             </ Container>

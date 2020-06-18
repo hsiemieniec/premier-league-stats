@@ -7,7 +7,7 @@ import { Row } from 'react-bootstrap';
 
 export default function Standings() {
     const [standings, setStandings] = useState([]);
-    const [load, setLoad] = useState(true);
+    const [loading, isLoading] = useState(true);
     const [leagueName, setLeagueName] = useState("");
     const [dateStart, setDateStart] = useState(null);
     const [dateEnd, setDateEnd] = useState(null);
@@ -23,38 +23,52 @@ export default function Standings() {
                 setStandings(data.standings[0].table);
                 setDateStart(data.season.startDate);
                 setDateEnd(data.season.endDate);
-                setLoad(false);
+                isLoading(false);
             })
             .catch(err => console.log(err));
     }, []);
 
-
-    if(load) {
+    if(loading) {
         return (
-            <Container>
+            <Container fluid="lg">
                 Loading ...
             </Container>       
         )
     } else {
         return (
-            <Container fluid className="standings">
+            <Container fluid="lg" className="standings">
                 <Row>
-                    <h1>{leagueName} - {dateStart.split('-')[0]}/{dateEnd.split('-')[0]}</h1>
+                    <h2>{leagueName} - {dateStart.split('-')[0]}/{dateEnd.split('-')[0]}</h2>
                 </Row>
                 <Row>
-                    <Table striped bordered hover responsive>
+                    <Table striped bordered responsive>
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Club Name</th>
-                            <th>Played Games</th>
-                            <th>Wins</th>
-                            <th>Lost</th>
-                            <th>Draw</th>
-                            <th>GF</th>
-                            <th>GA</th>
-                            <th>GD</th>
-                            <th>Points</th>
+                            <th>Club</th>
+                            <th className="played_games">
+                                <span className="short">G</span>
+                                <span className="long">Played Games</span>
+                            </th>
+                            <th className="wins">
+                                <span className="short">W</span>
+                                <span className="long">Wins</span>
+                            </th>
+                            <th className="lost">
+                                <span className="short">L</span>
+                                <span className="long">Lost</span>
+                            </th>
+                            <th className="draw">
+                                <span className="short">D</span>
+                                <span className="long">Draw</span>
+                            </th>
+                            <th className="gf">GF</th>
+                            <th className="ga">GA</th>
+                            <th className="gd">GD</th>
+                            <th className="points">
+                                <span className="short">P</span>
+                                <span className="long">P</span>
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
