@@ -8,14 +8,16 @@ export default function Header() {
         <header>
             <Container fluid="lg">
                 <Navbar collapseOnSelect expand="lg" bg="default" variant="header">
-                    <Navbar.Brand href="#">
-                        <img
-                            src={logo}
-                            className="d-inline-block align-top logo"
-                            alt="React Bootstrap logo"
-                        />
-                        Premier League Stats
-                    </Navbar.Brand>
+                    <div className="logo">
+                        <Navbar.Brand href="#">
+                            <img
+                                src={logo}
+                                className="d-inline-block align-top"
+                                alt="React Bootstrap logo"
+                            />
+                        </Navbar.Brand>
+                        <div className="logo-text">Premier <br></br>League <br></br>Stats</div>
+                    </div>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <Nav className="mr-auto">

@@ -31,29 +31,47 @@ hr {
 
 .navbar-header {
     .navbar-brand {
-        font-size: 1.2rem;
-        font-weight: bold;
-
-        @include media-breakpoint-up(lg) { 
-            border-right: 2px solid white;
-            padding-right: 30px;
-        }
+        margin-right: 0.1rem;
     }
+
     .navbar-nav {
         a {
             font-size: 1.2rem;
             font-weight: bold;
+            text-align: center;
         }
     }
+
     .navbar-toggler {
         color:white;
         border-color: white;
     }
 
     .logo {
-        height: 50px;
-        @include media-breakpoint-up(md) {
-            height: 80px;
+        margin-right: 1rem;
+        img {
+            height: 60px;
+
+            @include media-breakpoint-up(md) {
+                height: 70px;
+            }
+
+            @include media-breakpoint-up(xl) {
+                height: 80px;
+            }
+        }
+
+        .logo-text {
+            padding-top: 0.3125rem;
+            padding-bottom: 0.3125rem;
+            float: right;
+            font-weight: bold;
+            font-size: 1.1rem;
+
+            @include media-breakpoint-up(lg) { 
+                border-right: 2px solid white;
+                padding-right: 30px;
+            }
         }
     }
 }

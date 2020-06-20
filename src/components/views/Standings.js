@@ -47,7 +47,7 @@ export default function Standings() {
                             <th>#</th>
                             <th>Club</th>
                             <th className="played_games">
-                                <span className="short">G</span>
+                                <span className="short">P</span>
                                 <span className="long">Played Games</span>
                             </th>
                             <th className="wins">
@@ -66,8 +66,8 @@ export default function Standings() {
                             <th className="ga">GA</th>
                             <th className="gd">GD</th>
                             <th className="points">
-                                <span className="short">P</span>
-                                <span className="long">P</span>
+                                <span className="short">Pts</span>
+                                <span className="long">Points</span>
                             </th>
                         </tr>
                     </thead>
