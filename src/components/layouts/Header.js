@@ -7,7 +7,7 @@ export default function Header() {
     return (
         <header>
             <Container fluid="lg">
-                <Navbar collapseOnSelect expand="lg" bg="default" variant="header">
+                <Navbar collapseOnSelect expand="lg" variant="dark" className="navbar-header">
                     <div className="logo">
                         <Navbar.Brand href="#">
                             <img

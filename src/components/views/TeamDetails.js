@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import axios from 'axios';
+import { GET_TEAM_DETAILS_DATA, API_HEADER } from '../../ApiClient';
 import { Container, Row } from 'react-bootstrap';
 
 import Loader from '../layouts/Loader';
@@ -17,7 +18,7 @@ export default function TeamDetails() {
 
     useEffect(() => {
         axios
-            .get('https://api.football-data.org/v2/teams/'+clubId , { headers: { 'X-AUTH-TOKEN' : process.env.REACT_APP_API_AUTH_TOKEN } })
+            .get(`${GET_TEAM_DETAILS_DATA}${clubId}`, API_HEADER)
             .then(res => {
                 let data = res.data;
                 setActiveCompetitions(data.activeCompetitions);

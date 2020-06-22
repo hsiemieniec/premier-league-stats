@@ -18,8 +18,6 @@ export default function StandingPosition(props) {
         return shortName.toUpperCase();
     }
 
-    shortName();
-
     return (
         <tr>
             <td>{position}</td>

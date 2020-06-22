@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
+import { GET_PREMIER_LEAGUE_INFO_DATA, API_HEADER } from '../../ApiClient';
 import axios from 'axios';
 import { Container, Row, Col } from 'react-bootstrap';
 import EplWinnerCard from './parts/EplWinnerCard';
+import Loader from '../layouts/Loader';
 
 export default function EplWinners() {
     const [winners, setWinners] = useState([]);
@@ -10,7 +12,7 @@ export default function EplWinners() {
     // useEffect : Get Epl winners
     useEffect(() => {
         axios
-            .get('https://api.football-data.org/v2/competitions/PL', { headers: { 'X-AUTH-TOKEN' : process.env.REACT_APP_API_AUTH_TOKEN } })
+            .get(GET_PREMIER_LEAGUE_INFO_DATA, API_HEADER)
             .then(res => {
                 let data = res.data;
                 setWinners(data.seasons);
@@ -21,7 +23,9 @@ export default function EplWinners() {
 
     if(loading) {
         return (
-            <Container fluid="lg">Loading ...</Container>
+            <Container fluid="lg">
+                <Loader />
+            </Container>
         )
     } else {
         return (

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { GET_TEAMS_INFO_DATA, API_HEADER } from '../../ApiClient';
 import axios from 'axios';
 import { Container, Row, Form, Col } from 'react-bootstrap';
 import TeamInfoRow from './parts/TeamInfoRow';
@@ -13,7 +14,7 @@ export default function TeamsInfo() {
 
     useEffect(() => {
         axios
-            .get('https://api.football-data.org/v2/competitions/PL/teams?season='+selectedSeason, { headers: { 'X-AUTH-TOKEN' : process.env.REACT_APP_API_AUTH_TOKEN } })
+            .get(`${GET_TEAMS_INFO_DATA}?season=${selectedSeason}`, API_HEADER)
             .then(res => {
                 let data = res.data;
                 setStartDate(data.season.startDate);
@@ -32,7 +33,9 @@ export default function TeamsInfo() {
 
     if(loading) {
         return (
-            <Loader />
+            <Container fluid="lg">
+                <Loader />
+            </Container>
         )
     } else {
         return (
@@ -47,8 +50,8 @@ export default function TeamsInfo() {
                             controlId="seasonSelect"
                         >
                             <Form.Control as="select">
-                                <option>2019</option>
-                                <option>2018</option>
+                                <option value="2019">2019/2020</option>
+                                <option value="2018">2018/2019</option>
                             </Form.Control>
                         </Form.Group>
                     </Col>

@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import Container from 'react-bootstrap/Container';
+import { GET_STANDINGS_DATA, API_HEADER } from '../../ApiClient';
 import axios from 'axios';
 import StandingPosition from './parts/StandingPosition';
+import Loader from '../layouts/Loader';
 import Table from 'react-bootstrap/Table';
-import { Row } from 'react-bootstrap';
+import { Row, Form, Col } from 'react-bootstrap';
 
 export default function Standings() {
     const [standings, setStandings] = useState([]);
@@ -11,12 +13,13 @@ export default function Standings() {
     const [leagueName, setLeagueName] = useState("");
     const [dateStart, setDateStart] = useState(null);
     const [dateEnd, setDateEnd] = useState(null);
+    const [season, setSeason] = useState(2019);
 
 
     // useEffect : Get Standings
     useEffect(() => {
         axios
-            .get('https://api.football-data.org/v2/competitions/PL/standings', { headers: { 'X-AUTH-TOKEN' : process.env.REACT_APP_API_AUTH_TOKEN } })
+            .get(`${GET_STANDINGS_DATA}?season=${season}`, API_HEADER)
             .then(res => {
                 let data = res.data;
                 setLeagueName(data.competition.name)
@@ -26,19 +29,39 @@ export default function Standings() {
                 isLoading(false);
             })
             .catch(err => console.log(err));
-    }, []);
+    }, [season]);
+
+    const selectedSeasonChange = (e) => {
+        e.preventDefault();
+        setSeason(e.target.value);
+        isLoading(true);
+    }
 
     if(loading) {
         return (
             <Container fluid="lg">
-                Loading ...
+                <Loader />
             </Container>       
         )
     } else {
         return (
             <Container fluid="lg" className="standings">
                 <Row>
-                    <h2>{leagueName} - {dateStart.split('-')[0]}/{dateEnd.split('-')[0]}</h2>
+                    <Col xl={10} lg={9} md={8} sm={12}>
+                        <h2>{leagueName} - {dateStart.split('-')[0]}/{dateEnd.split('-')[0]}</h2>
+                    </Col>
+                    <Col sm={12} md={4} lg={3} xl={2}>
+                        <Form.Group
+                                onChange={selectedSeasonChange} 
+                                controlId="seasonSelect"
+                                value={season}
+                            >
+                                <Form.Control as="select">
+                                    <option value="2019">2019/2020</option>
+                                    <option value="2018">2018/2019</option>
+                                </Form.Control>
+                            </Form.Group>
+                    </Col>
                 </Row>
                 <Row>
                     <Table striped bordered responsive>
@@ -48,7 +71,7 @@ export default function Standings() {
                             <th>Club</th>
                             <th className="played_games">
                                 <span className="short">P</span>
-                                <span className="long">Played Games</span>
+                                <span className="long">Played <br></br>Games</span>
                             </th>
                             <th className="wins">
                                 <span className="short">W</span>
